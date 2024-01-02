@@ -1,0 +1,48 @@
+<style>
+    .nav-container{
+        display: flex;
+        justify-content: space-between;
+        /* grid-template-columns: 1fr 4fr 1fr; */
+    }
+    #logo{
+        text-size-adjust: 200px;
+        font-size: 50px;
+    }
+    #searchBar{
+        width: 50vw;
+    }
+
+</style>
+
+
+
+<div class="nav-container">
+<div>
+    <a href="/" id="logo">
+        <b>LOGO</b>
+    </a>
+</div>
+<div>
+    <form method = 'GET' action="{% url 'home' %}">
+        <input type="text" name="q" placeholder="Search Rooms..." id="searchBar"/>
+    </form>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+<div>
+    {% if request.user.is_authenticated %}
+    <p>hello {{ request.user }}</p>
+    <a href="{% url 'logout-page'%}">Logout</a>
+    {% else %}
+    <a href="{% url 'login-page'%}">Login</a>
+    {% endif %}
+</div>
+
+</div>
+<hr>
